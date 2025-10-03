@@ -1,0 +1,30 @@
+﻿@model IEnumerable<GiftOfTheGivers.Models.Incident>
+
+<h2>Reported Incidents</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Severity</th>
+            <th>Reported By</th>
+            <th>Reported At</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var incident in Model)
+        {
+            <tr>
+                <td>@incident.Title</td>
+                <td>@incident.Description</td>
+                <td>@incident.Severity</td>
+                <td>@incident.ReportedBy.FullName</td>
+                <td>@incident.ReportedAt.ToLocalTime()</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a asp-action="Create" class="btn btn-primary">Report New Incident</a>
+

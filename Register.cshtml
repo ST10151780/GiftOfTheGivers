@@ -1,47 +1,32 @@
-﻿@model GiftOfTheGivers.ViewModels.RegisterViewModel
-@using Microsoft.AspNetCore.Identity
-@inject UserManager<GiftOfTheGivers.Models.ApplicationUser> UserManager
+﻿@model GiftOfTheGivers.Models.VolunteerProfile
 
-<h2>Register</h2>
-
-<form asp-action="Register" method="post">
-    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-
-    <div class="form-group">
-        <label asp-for="FirstName"></label>
-        <input asp-for="FirstName" class="form-control" />
-        <span asp-validation-for="FirstName" class="text-danger"></span>
-    </div>
-
-    <div class="form-group">
-        <label asp-for="LastName"></label>
-        <input asp-for="LastName" class="form-control" />
-        <span asp-validation-for="LastName" class="text-danger"></span>
-    </div>
-
-    <div class="form-group">
-        <label asp-for="Email"></label>
-        <input asp-for="Email" class="form-control" />
-        <span asp-validation-for="Email" class="text-danger"></span>
-    </div>
-
-    <div class="form-group">
-        <label asp-for="Password"></label>
-        <input asp-for="Password" type="password" class="form-control" />
-        <span asp-validation-for="Password" class="text-danger"></span>
-    </div>
-
-    <div class="form-group">
-        <label asp-for="ConfirmPassword"></label>
-        <input asp-for="ConfirmPassword" type="password" class="form-control" />
-        <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
-    </div>
-
-    <button type="submit" class="btn btn-primary">Register</button>
-</form>
-
-@section Scripts {
-    <partial name="_ValidationScriptsPartial" />
+@{
+    ViewData["Title"] = "Volunteer Registration";
 }
 
+<div class="container mt-5">
+    <h2 class="mb-4">Volunteer Registration</h2>
+
+    <p>
+        Join our team of volunteers and help make a difference. Fill in your skills and availability so we can match you with suitable tasks.
+    </p>
+
+    <form asp-action="Register" method="post">
+        <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+        <div class="mb-3">
+            <label asp-for="Skills" class="form-label"></label>
+            <textarea asp-for="Skills" class="form-control" placeholder="E.g., First Aid, Logistics, Fundraising"></textarea>
+            <span asp-validation-for="Skills" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Availability" class="form-label"></label>
+            <input asp-for="Availability" class="form-control" placeholder="E.g., Weekends, Weekdays, Evenings" />
+            <span asp-validation-for="Availability" class="text-danger"></span>
+        </div>
+
+        <button type="submit" class="btn btn-success">Register</button>
+    </form>
+</div>
 

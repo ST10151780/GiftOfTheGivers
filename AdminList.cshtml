@@ -1,0 +1,48 @@
+﻿@model IEnumerable<GiftOfTheGivers.Models.VolunteerProfile>
+
+@{
+    ViewData["Title"] = "Pending Volunteers";
+}
+
+<div class="container mt-5">
+    <h2 class="mb-4">Pending Volunteer Approvals</h2>
+
+    <p>
+        Review the volunteer profiles below and approve those who meet the requirements. Only approved volunteers will be assigned to tasks.
+    </p>
+
+    @if (!Model.Any())
+    {
+        <div class="alert alert-info">
+            There are currently no volunteers pending approval.
+        </div>
+    }
+    else
+    {
+        <table class="table table-striped table-hover">
+            <thead class="table-light">
+                <tr>
+                    <th>Name</th>
+                    <th>Skills</th>
+                    <th>Availability</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var v in Model)
+                {
+                    <tr>
+                        <td>@v.User.FirstName @v.User.LastName</td>
+                        <td>@v.Skills</td>
+                        <td>@v.Availability</td>
+                        <td>
+                            <a asp-action="Approve" asp-route-id="@v.VolunteerProfileId" class="btn btn-success btn-sm">
+                                Approve
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+</div>
